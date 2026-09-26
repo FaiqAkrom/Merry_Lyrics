@@ -126,7 +126,7 @@ def split_lyric_into_lines(text):
     curated_map = {
         "I Want One Ticket Out Of Your Heavy Gaze": ["I Want One Ticket", "Out Of Your Heavy Gaze"],
         "I Want One Ticket Off Of Your Carousel": ["I Want One Ticket", "Off Of Your Carousel"],
-        "But You Should Know That I Die Slow": ["But You", "Should Know"],
+        "But You Should Know That I Die Slow": ["But You Should Know", "That I Die Slow"],
         "Running Through The Halls Of Your Haunted Home": ["Running Through The Halls", "Of Your Haunted Home"],
         "And The Toughest Part Is That We Both Know": ["And The Toughest Part", "Is That We Both Know"],
         "What Happened To You": ["What Happened", "To You"],
