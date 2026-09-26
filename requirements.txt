@@ -1,0 +1,2 @@
+# Core dependency for rasterizing dot-matrix typography
+Pillow>=10.0.0

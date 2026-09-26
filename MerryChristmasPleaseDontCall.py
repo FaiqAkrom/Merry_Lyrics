@@ -29,12 +29,27 @@ SUBTLE_HINT = "#333842"
 
 
 def get_raster_font(size=11):
-    """Retrieve best available monospaced bold system font for rasterization."""
+    """Retrieve best available monospaced bold system font for rasterization (cross-platform)."""
     candidates = [
+        # Windows Fonts (Preferred: Consolas Bold, Courier New Bold, Arial Bold)
         "C:/Windows/Fonts/consolab.ttf",
         "C:/Windows/Fonts/consola.ttf",
         "C:/Windows/Fonts/courbd.ttf",
         "C:/Windows/Fonts/arialbd.ttf",
+
+        # macOS Fonts
+        "/System/Library/Fonts/Supplemental/Courier New Bold.ttf",
+        "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+        "/Library/Fonts/Courier New Bold.ttf",
+        "/System/Library/Fonts/Monaco.dfont",
+        "/System/Library/Fonts/Menlo.ttc",
+
+        # Linux Fonts (Debian/Ubuntu, Arch, Fedora)
+        "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf",
+        "/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf",
+        "/usr/share/fonts/liberation-mono/LiberationMono-Bold.ttf",
     ]
     for p in candidates:
         if os.path.exists(p):
@@ -42,6 +57,14 @@ def get_raster_font(size=11):
                 return ImageFont.truetype(p, size)
             except Exception:
                 pass
+
+    # Direct font name lookup via PIL font engine
+    for name in ["consolab", "consola", "DejaVuSansMono-Bold", "Courier New Bold", "Arial Bold"]:
+        try:
+            return ImageFont.truetype(name, size)
+        except Exception:
+            pass
+
     return ImageFont.load_default()
 
 RASTER_FONT = get_raster_font(11)
